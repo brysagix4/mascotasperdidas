@@ -38,19 +38,6 @@ let mascotas = [
   },
 
 
-  {
-    id: 3,
-    nombre: "Lucio",
-    tipo: "Gato",
-    sexo: "Macho",
-    dueno: "Juan David Velasquez",
-    barrio: "Kachipay ",
-    fecha: "10/08/2026",
-    telefono: "321 7297323",
-    foto: "./img/lucio.jpg",
-    estado: "perdida",
-  }
-
 ];
 
 // =====================================================
