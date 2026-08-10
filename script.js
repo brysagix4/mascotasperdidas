@@ -1,4 +1,3 @@
-
 // =====================================================
 // CONFIGURACIÓN
 // =====================================================
@@ -7,241 +6,170 @@ const ANIMALES_POR_PAGINA = 9;
 
 let paginaActual = 1;
 
-
 // =====================================================
 // DATOS
 // =====================================================
 
 let mascotas = [
+  {
+    id: 1,
+    nombre: "Tuty",
+    tipo: "Gato",
+    sexo: "Hembra",
+    dueno: "Nathalia Zapata",
+    barrio: "Bochalema ",
+    fecha: "10/08/2026",
+    telefono: "3014672421",
+    foto: "./img/tuty.jpg",
+    estado: "perdida",
+  },
 
-    {
-      id: 1,
-        nombre: "Tuty",
-        tipo: "Gata",
-        dueno: "Nathalia Zapata",
-        barrio: "Bochalema ",
-        fecha: "10/08/2026",
-        telefono: "3001234567",
-        foto: "./img/tuty.jpg",
-        estado: "perdida"
-        }
+  {
+    id: 2,
+    nombre: "Zenu",
+    tipo: "Perro",
+    sexo: "Macho",
+    dueno: "Juan Urrea",
+    barrio: "Kachipay ",
+    fecha: "10/08/2026",
+    telefono: "317 3903451",
+    foto: "./img/zenu.jpg",
+    estado: "perdida",
+  },
+
 
 ];
-
 
 // =====================================================
 // ELEMENTOS
 // =====================================================
 
-const listaMascotas =
-    document.getElementById("listaMascotas");
+const listaMascotas = document.getElementById("listaMascotas");
 
-const contador =
-    document.getElementById("contador");
+const contador = document.getElementById("contador");
 
-const paginacion =
-    document.getElementById("paginacion");
+const paginacion = document.getElementById("paginacion");
 
-const sinResultados =
-    document.getElementById("sinResultados");
+const sinResultados = document.getElementById("sinResultados");
 
-const buscador =
-    document.getElementById("buscador");
+const buscador = document.getElementById("buscador");
 
-const filtroTipo =
-    document.getElementById("filtroTipo");
+const filtroTipo = document.getElementById("filtroTipo");
 
-const filtroEstado =
-    document.getElementById("filtroEstado");
+const filtroEstado = document.getElementById("filtroEstado");
 
-const modalPublicar =
-    document.getElementById("modalPublicar");
+const modalPublicar = document.getElementById("modalPublicar");
 
-const modalDetalles =
-    document.getElementById("modalDetalles");
+const modalDetalles = document.getElementById("modalDetalles");
 
-const formMascota =
-    document.getElementById("formMascota");
-
+const formMascota = document.getElementById("formMascota");
 
 // =====================================================
 // FILTRAR
 // =====================================================
 
 function obtenerMascotasFiltradas() {
+  const texto = buscador.value.trim().toLowerCase();
 
-    const texto =
-        buscador.value
-            .trim()
-            .toLowerCase();
+  const tipo = filtroTipo.value;
 
-    const tipo =
-        filtroTipo.value;
+  const estado = filtroEstado.value;
 
-    const estado =
-        filtroEstado.value;
+  return mascotas.filter((mascota) => {
+    const nombre = mascota.nombre.toLowerCase();
 
+    const barrio = mascota.barrio.toLowerCase();
 
-    return mascotas.filter(mascota => {
+    const coincideTexto = nombre.includes(texto) || barrio.includes(texto);
 
-        const nombre =
-            mascota.nombre
-                .toLowerCase();
+    const coincideTipo = tipo === "todos" || mascota.tipo === tipo;
 
-        const barrio =
-            mascota.barrio
-                .toLowerCase();
+    const coincideEstado = estado === "todos" || mascota.estado === estado;
 
-
-        const coincideTexto =
-            nombre.includes(texto) ||
-            barrio.includes(texto);
-
-
-        const coincideTipo =
-            tipo === "todos" ||
-            mascota.tipo === tipo;
-
-
-        const coincideEstado =
-            estado === "todos" ||
-            mascota.estado === estado;
-
-
-        return (
-            coincideTexto &&
-            coincideTipo &&
-            coincideEstado
-        );
-
-    });
-
+    return coincideTexto && coincideTipo && coincideEstado;
+  });
 }
-
 
 // =====================================================
 // MOSTRAR MASCOTAS
 // =====================================================
 
 function mostrarMascotas() {
+  const filtradas = obtenerMascotasFiltradas();
 
-    const filtradas =
-        obtenerMascotasFiltradas();
+  contador.textContent = `${filtradas.length} ${
+    filtradas.length === 1 ? "mascota" : "mascotas"
+  }`;
 
-
-    contador.textContent =
-        `${filtradas.length} ${
-            filtradas.length === 1
-                ? "mascota"
-                : "mascotas"
-        }`;
-
-
-    if (filtradas.length === 0) {
-
-        listaMascotas.innerHTML = "";
-
-        paginacion.innerHTML = "";
-
-        sinResultados.style.display =
-            "block";
-
-        return;
-    }
-
-
-    sinResultados.style.display =
-        "none";
-
-
-    const totalPaginas =
-        Math.ceil(
-            filtradas.length /
-            ANIMALES_POR_PAGINA
-        );
-
-
-    if (paginaActual > totalPaginas) {
-
-        paginaActual =
-            totalPaginas;
-    }
-
-
-    const inicio =
-        (paginaActual - 1) *
-        ANIMALES_POR_PAGINA;
-
-
-    const fin =
-        inicio +
-        ANIMALES_POR_PAGINA;
-
-
-    const mascotasPagina =
-        filtradas.slice(
-            inicio,
-            fin
-        );
-
-
+  if (filtradas.length === 0) {
     listaMascotas.innerHTML = "";
 
+    paginacion.innerHTML = "";
 
-    mascotasPagina.forEach(mascota => {
+    sinResultados.style.display = "block";
 
-        listaMascotas.appendChild(
-            crearTarjeta(mascota)
-        );
+    return;
+  }
 
-    });
+  sinResultados.style.display = "none";
 
+  const totalPaginas = Math.ceil(filtradas.length / ANIMALES_POR_PAGINA);
 
-    crearPaginacion(totalPaginas);
+  if (paginaActual > totalPaginas) {
+    paginaActual = totalPaginas;
+  }
 
+  const inicio = (paginaActual - 1) * ANIMALES_POR_PAGINA;
+
+  const fin = inicio + ANIMALES_POR_PAGINA;
+
+  const mascotasPagina = filtradas.slice(inicio, fin);
+
+  listaMascotas.innerHTML = "";
+
+  mascotasPagina.forEach((mascota) => {
+    listaMascotas.appendChild(crearTarjeta(mascota));
+  });
+
+  crearPaginacion(totalPaginas);
 }
-
 
 // =====================================================
 // CREAR TARJETA
 // =====================================================
 
 function crearTarjeta(mascota) {
+  const tarjeta = document.createElement("article");
 
-    const tarjeta =
-        document.createElement("article");
+  tarjeta.className = "card";
 
+  const perdida = mascota.estado === "perdida";
 
-    tarjeta.className =
-        "card";
-
-
-    const perdida =
-        mascota.estado === "perdida";
+  tarjeta.innerHTML = `
 
 
-    tarjeta.innerHTML = `
+
+
 
         <img
-            class="card-image"
-            src="${escapeHTML(mascota.foto)}"
-            alt="${escapeHTML(mascota.nombre)}"
-        >
+    class="card-image"
+    src="${escapeHTML(mascota.foto)}"
+    alt="${escapeHTML(mascota.nombre)}"
+    onclick="verDetalles(${mascota.id})"
+>
+
+
+
+
 
 
         <div class="card-body">
 
             <span class="badge ${
-                perdida
-                    ? "badge-perdida"
-                    : "badge-encontrada"
+              perdida ? "badge-perdida" : "badge-encontrada"
             }">
 
-                ${
-                    perdida
-                        ? "🔴 Perdida"
-                        : "🟢 Encontrada"
-                }
+                ${perdida ? "🔴 Perdida" : "🟢 Encontrada"}
 
             </span>
 
@@ -287,149 +215,89 @@ function crearTarjeta(mascota) {
 
     `;
 
-
-    return tarjeta;
+  return tarjeta;
 }
-
 
 // =====================================================
 // PAGINACIÓN
 // =====================================================
 
 function crearPaginacion(totalPaginas) {
+  paginacion.innerHTML = "";
 
-    paginacion.innerHTML = "";
+  if (totalPaginas <= 1) {
+    return;
+  }
 
+  const anterior = document.createElement("button");
 
-    if (totalPaginas <= 1) {
-        return;
+  anterior.textContent = "‹";
+
+  anterior.disabled = paginaActual === 1;
+
+  anterior.addEventListener("click", () => {
+    paginaActual--;
+
+    mostrarMascotas();
+
+    desplazarseListado();
+  });
+
+  paginacion.appendChild(anterior);
+
+  for (let i = 1; i <= totalPaginas; i++) {
+    const boton = document.createElement("button");
+
+    boton.textContent = i;
+
+    if (i === paginaActual) {
+      boton.classList.add("activa");
     }
 
+    boton.addEventListener("click", () => {
+      paginaActual = i;
 
-    const anterior =
-        document.createElement("button");
+      mostrarMascotas();
 
-    anterior.textContent = "‹";
+      desplazarseListado();
+    });
 
-    anterior.disabled =
-        paginaActual === 1;
+    paginacion.appendChild(boton);
+  }
 
+  const siguiente = document.createElement("button");
 
-    anterior.addEventListener(
-        "click",
-        () => {
+  siguiente.textContent = "›";
 
-            paginaActual--;
+  siguiente.disabled = paginaActual === totalPaginas;
 
-            mostrarMascotas();
+  siguiente.addEventListener("click", () => {
+    paginaActual++;
 
-            desplazarseListado();
+    mostrarMascotas();
 
-        }
-    );
+    desplazarseListado();
+  });
 
-
-    paginacion.appendChild(anterior);
-
-
-    for (
-        let i = 1;
-        i <= totalPaginas;
-        i++
-    ) {
-
-        const boton =
-            document.createElement("button");
-
-
-        boton.textContent = i;
-
-
-        if (i === paginaActual) {
-
-            boton.classList.add(
-                "activa"
-            );
-        }
-
-
-        boton.addEventListener(
-            "click",
-            () => {
-
-                paginaActual = i;
-
-                mostrarMascotas();
-
-                desplazarseListado();
-
-            }
-        );
-
-
-        paginacion.appendChild(boton);
-
-    }
-
-
-    const siguiente =
-        document.createElement("button");
-
-
-    siguiente.textContent = "›";
-
-    siguiente.disabled =
-        paginaActual === totalPaginas;
-
-
-    siguiente.addEventListener(
-        "click",
-        () => {
-
-            paginaActual++;
-
-            mostrarMascotas();
-
-            desplazarseListado();
-
-        }
-    );
-
-
-    paginacion.appendChild(siguiente);
-
+  paginacion.appendChild(siguiente);
 }
-
 
 // =====================================================
 // DETALLES
 // =====================================================
 
 function verDetalles(id) {
+  const mascota = mascotas.find((mascota) => mascota.id === id);
 
-    const mascota =
-        mascotas.find(
-            mascota =>
-                mascota.id === id
-        );
+  if (!mascota) {
+    return;
+  }
 
+  const perdida = mascota.estado === "perdida";
 
-    if (!mascota) {
-        return;
-    }
+  const detalle = document.getElementById("detalleMascota");
 
-
-    const perdida =
-        mascota.estado === "perdida";
-
-
-    const detalle =
-        document.getElementById(
-            "detalleMascota"
-        );
-
-
-    detalle.innerHTML = `
+  detalle.innerHTML = `
 
         <img
             class="detalle-imagen"
@@ -438,17 +306,9 @@ function verDetalles(id) {
         >
 
 
-        <span class="badge ${
-            perdida
-                ? "badge-perdida"
-                : "badge-encontrada"
-        }">
+        <span class="badge ${perdida ? "badge-perdida" : "badge-encontrada"}">
 
-            ${
-                perdida
-                    ? "🔴 Mascota perdida"
-                    : "🟢 Mascota encontrada"
-            }
+            ${perdida ? "🔴 Mascota perdida" : "🟢 Mascota encontrada"}
 
         </span>
 
@@ -502,432 +362,227 @@ function verDetalles(id) {
             </strong>
 
             <p>
-                ${escapeHTML(
-                    mascota.descripcion ||
-                    "Sin descripción."
-                )}
+                ${escapeHTML(mascota.descripcion || "Sin descripción.")}
             </p>
 
         </div>
 
 
-        <a
-            class="btn btn-primary btn-full"
-            href="tel:${escapeHTML(mascota.telefono)}">
-
-            📞 Llamar al dueño
-
-        </a>
-
     `;
 
-
-    modalDetalles.style.display =
-        "block";
-
+  modalDetalles.style.display = "block";
 }
-
 
 // =====================================================
 // MARCAR ENCONTRADA
 // =====================================================
 
 function marcarEncontrada(id) {
+  const mascota = mascotas.find((mascota) => mascota.id === id);
 
-    const mascota =
-        mascotas.find(
-            mascota =>
-                mascota.id === id
-        );
+  if (!mascota) {
+    return;
+  }
 
+  if (!confirm(`¿Confirmas que ${mascota.nombre} fue encontrada?`)) {
+    return;
+  }
 
-    if (!mascota) {
-        return;
-    }
+  mascota.estado = "encontrada";
 
-
-    if (
-        !confirm(
-            `¿Confirmas que ${mascota.nombre} fue encontrada?`
-        )
-    ) {
-        return;
-    }
-
-
-    mascota.estado =
-        "encontrada";
-
-
-    mostrarMascotas();
-
+  mostrarMascotas();
 }
-
 
 // =====================================================
 // PUBLICAR MASCOTA
 // =====================================================
 
-formMascota.addEventListener(
-    "submit",
-    function(event) {
+formMascota.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-        event.preventDefault();
+  const archivo = document.getElementById("foto").files[0];
 
+  if (!archivo) {
+    alert("Selecciona una fotografía.");
 
-        const archivo =
-            document.getElementById(
-                "foto"
-            ).files[0];
+    return;
+  }
 
+  const lector = new FileReader();
 
-        if (!archivo) {
+  lector.onload = function (evento) {
+    const mascota = {
+      id: Date.now(),
 
-            alert(
-                "Selecciona una fotografía."
-            );
+      nombre: document.getElementById("nombre").value.trim(),
 
-            return;
-        }
+      tipo: document.getElementById("tipo").value,
 
+      dueno: document.getElementById("dueno").value.trim(),
 
-        const lector =
-            new FileReader();
+      barrio: document.getElementById("barrio").value.trim(),
 
+      fecha: document.getElementById("fecha").value,
 
-        lector.onload =
-            function(evento) {
+      telefono: document.getElementById("telefono").value.trim(),
 
-                const mascota = {
+      descripcion: document.getElementById("descripcion").value.trim(),
 
-                    id: Date.now(),
+      foto: evento.target.result,
 
-                    nombre:
-                        document.getElementById(
-                            "nombre"
-                        ).value.trim(),
+      estado: "perdida",
+    };
 
-                    tipo:
-                        document.getElementById(
-                            "tipo"
-                        ).value,
+    mascotas.unshift(mascota);
 
-                    dueno:
-                        document.getElementById(
-                            "dueno"
-                        ).value.trim(),
+    formMascota.reset();
 
-                    barrio:
-                        document.getElementById(
-                            "barrio"
-                        ).value.trim(),
+    document.getElementById("previewContainer").style.display = "none";
 
-                    fecha:
-                        document.getElementById(
-                            "fecha"
-                        ).value,
+    modalPublicar.style.display = "none";
 
-                    telefono:
-                        document.getElementById(
-                            "telefono"
-                        ).value.trim(),
+    paginaActual = 1;
 
-                    descripcion:
-                        document.getElementById(
-                            "descripcion"
-                        ).value.trim(),
+    mostrarMascotas();
 
-                    foto:
-                        evento.target.result,
+    alert("La mascota fue publicada correctamente.");
+  };
 
-                    estado:
-                        "perdida"
-                };
-
-
-                mascotas.unshift(
-                    mascota
-                );
-
-
-                formMascota.reset();
-
-
-                document.getElementById(
-                    "previewContainer"
-                ).style.display =
-                    "none";
-
-
-                modalPublicar.style.display =
-                    "none";
-
-
-                paginaActual = 1;
-
-
-                mostrarMascotas();
-
-
-                alert(
-                    "La mascota fue publicada correctamente."
-                );
-
-            };
-
-
-        lector.readAsDataURL(
-            archivo
-        );
-
-    }
-);
-
+  lector.readAsDataURL(archivo);
+});
 
 // =====================================================
 // PREVISUALIZACIÓN
 // =====================================================
 
-document
-    .getElementById("foto")
-    .addEventListener(
-        "change",
-        function(event) {
+document.getElementById("foto").addEventListener("change", function (event) {
+  const archivo = event.target.files[0];
 
-            const archivo =
-                event.target.files[0];
+  if (!archivo) {
+    return;
+  }
 
+  const lector = new FileReader();
 
-            if (!archivo) {
-                return;
-            }
+  lector.onload = function (evento) {
+    document.getElementById("preview").src = evento.target.result;
 
+    document.getElementById("previewContainer").style.display = "block";
+  };
 
-            const lector =
-                new FileReader();
-
-
-            lector.onload =
-                function(evento) {
-
-                    document.getElementById(
-                        "preview"
-                    ).src =
-                        evento.target.result;
-
-
-                    document.getElementById(
-                        "previewContainer"
-                    ).style.display =
-                        "block";
-
-                };
-
-
-            lector.readAsDataURL(
-                archivo
-            );
-
-        }
-    );
-
+  lector.readAsDataURL(archivo);
+});
 
 // =====================================================
 // MODAL PUBLICAR
 // =====================================================
 
-document
-    .getElementById("btnPublicar")
-    .addEventListener(
-        "click",
-        () => {
-
-            modalPublicar.style.display =
-                "block";
-
-        }
-    );
-
+document.getElementById("btnPublicar").addEventListener("click", () => {
+  modalPublicar.style.display = "block";
+});
 
 // =====================================================
 // CERRAR MODAL PUBLICAR
 // =====================================================
 
-document
-    .getElementById("cerrarModal")
-    .addEventListener(
-        "click",
-        () => {
-
-            modalPublicar.style.display =
-                "none";
-
-        }
-    );
-
+document.getElementById("cerrarModal").addEventListener("click", () => {
+  modalPublicar.style.display = "none";
+});
 
 // =====================================================
 // CERRAR MODAL DETALLES
 // =====================================================
 
-document
-    .getElementById("cerrarDetalles")
-    .addEventListener(
-        "click",
-        () => {
-
-            modalDetalles.style.display =
-                "none";
-
-        }
-    );
-
+document.getElementById("cerrarDetalles").addEventListener("click", () => {
+  modalDetalles.style.display = "none";
+});
 
 // =====================================================
 // CERRAR AL HACER CLICK AFUERA
 // =====================================================
 
-window.addEventListener(
-    "click",
-    function(event) {
+window.addEventListener("click", function (event) {
+  if (event.target === modalPublicar) {
+    modalPublicar.style.display = "none";
+  }
 
-        if (
-            event.target ===
-            modalPublicar
-        ) {
-
-            modalPublicar.style.display =
-                "none";
-
-        }
-
-
-        if (
-            event.target ===
-            modalDetalles
-        ) {
-
-            modalDetalles.style.display =
-                "none";
-
-        }
-
-    }
-);
-
+  if (event.target === modalDetalles) {
+    modalDetalles.style.display = "none";
+  }
+});
 
 // =====================================================
 // BUSCADOR
 // =====================================================
 
-buscador.addEventListener(
-    "input",
-    () => {
+buscador.addEventListener("input", () => {
+  paginaActual = 1;
 
-        paginaActual = 1;
-
-        mostrarMascotas();
-
-    }
-);
-
+  mostrarMascotas();
+});
 
 // =====================================================
 // FILTROS
 // =====================================================
 
-filtroTipo.addEventListener(
-    "change",
-    () => {
+filtroTipo.addEventListener("change", () => {
+  paginaActual = 1;
 
-        paginaActual = 1;
+  mostrarMascotas();
+});
 
-        mostrarMascotas();
+filtroEstado.addEventListener("change", () => {
+  paginaActual = 1;
 
-    }
-);
-
-
-filtroEstado.addEventListener(
-    "change",
-    () => {
-
-        paginaActual = 1;
-
-        mostrarMascotas();
-
-    }
-);
-
+  mostrarMascotas();
+});
 
 // =====================================================
 // FECHA
 // =====================================================
 
 function formatearFecha(fecha) {
+  if (!fecha) {
+    return "No especificada";
+  }
 
-    if (!fecha) {
-        return "No especificada";
-    }
+  const partes = fecha.split("-");
 
+  if (partes.length !== 3) {
+    return fecha;
+  }
 
-    const partes =
-        fecha.split("-");
-
-
-    if (partes.length !== 3) {
-        return fecha;
-    }
-
-
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
-
+  return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
-
 
 // =====================================================
 // SEGURIDAD HTML
 // =====================================================
 
 function escapeHTML(texto) {
+  const elemento = document.createElement("div");
 
-    const elemento =
-        document.createElement("div");
+  elemento.textContent = texto ?? "";
 
-
-    elemento.textContent =
-        texto ?? "";
-
-
-    return elemento.innerHTML;
-
+  return elemento.innerHTML;
 }
-
 
 // =====================================================
 // SCROLL
 // =====================================================
 
 function desplazarseListado() {
+  const seccion = document.querySelector(".mascotas-section");
 
-    const seccion =
-        document.querySelector(
-            ".mascotas-section"
-        );
+  if (!seccion) {
+    return;
+  }
 
-
-    if (!seccion) {
-        return;
-    }
-
-
-    seccion.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
+  seccion.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }
-
 
 // =====================================================
 // INICIAR
