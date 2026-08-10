@@ -11,21 +11,10 @@ let paginaActual = 1;
 // =====================================================
 
 let mascotas = [
-  {
-    id: 1,
-    nombre: "Tuty",
-    tipo: "Gato",
-    sexo: "Hembra",
-    dueno: "Nathalia Zapata",
-    barrio: "Bochalema ",
-    fecha: "10/08/2026",
-    telefono: "3014672421",
-    foto: "./img/tuty.jpg",
-    estado: "perdida",
-  },
+  
 
   {
-    id: 2,
+    id: 1,
     nombre: "Zenu",
     tipo: "Perro",
     sexo: "Macho",
