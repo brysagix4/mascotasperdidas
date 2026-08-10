@@ -1,0 +1,771 @@
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f8fafc;
+    color: #1e293b;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.header-content {
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #1e293b;
+    text-decoration: none;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.btn {
+    border: none;
+    border-radius: 8px;
+
+    padding: 11px 18px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #f8fafc
+        );
+
+    padding: 65px 0;
+}
+
+.hero h1 {
+    max-width: 700px;
+
+    font-size: 42px;
+    line-height: 1.15;
+
+    color: #0f172a;
+
+    margin-bottom: 18px;
+}
+
+.hero p {
+    max-width: 680px;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    color: #64748b;
+
+    margin-bottom: 30px;
+}
+
+
+/* =====================================================
+   BUSCADOR
+===================================================== */
+
+.search-box {
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr
+        1fr
+        1fr;
+
+    gap: 12px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.search-box input,
+.search-box select {
+
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: white;
+
+    font-size: 14px;
+}
+
+.search-box input:focus,
+.search-box select:focus {
+
+    border-color: #2563eb;
+}
+
+
+/* =====================================================
+   SECCIÓN MASCOTAS
+===================================================== */
+
+.mascotas-section {
+    padding: 55px 0 70px;
+}
+
+.section-header {
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+
+    color: #0f172a;
+
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   GRID 3 X 3
+===================================================== */
+
+.grid-mascotas {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =====================================================
+   FOTO
+===================================================== */
+
+.card-image {
+
+    width: 100%;
+
+    height: 230px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =====================================================
+   CARD BODY
+===================================================== */
+
+.card-body {
+
+    padding: 20px;
+}
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+.badge {
+
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.badge-perdida {
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+}
+
+.badge-encontrada {
+
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+
+/* =====================================================
+   NOMBRE
+===================================================== */
+
+.card-title {
+
+    font-size: 21px;
+
+    color: #111827;
+
+    margin-bottom: 14px;
+}
+
+
+/* =====================================================
+   INFORMACIÓN
+===================================================== */
+
+.card-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.card-info strong {
+
+    color: #334155;
+}
+
+
+/* =====================================================
+   BOTONES TARJETA
+===================================================== */
+
+.card-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.card-buttons .btn {
+
+    flex: 1;
+}
+
+
+/* =====================================================
+   PAGINACIÓN
+===================================================== */
+
+.paginacion {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 35px;
+}
+
+.paginacion button {
+
+    width: 40px;
+    height: 40px;
+
+    background: white;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    color: #334155;
+}
+
+.paginacion button:hover:not(:disabled) {
+
+    background: #f1f5f9;
+}
+
+.paginacion button.activa {
+
+    background: #2563eb;
+
+    color: white;
+
+    border-color: #2563eb;
+}
+
+.paginacion button:disabled {
+
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   SIN RESULTADOS
+===================================================== */
+
+.sin-resultados {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 70px 20px;
+}
+
+.sin-resultados div {
+
+    font-size: 50px;
+
+    margin-bottom: 10px;
+}
+
+.sin-resultados h3 {
+
+    color: #334155;
+
+    margin-bottom: 5px;
+}
+
+.sin-resultados p {
+
+    color: #64748b;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 1000;
+
+    inset: 0;
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    padding: 30px 15px;
+
+    overflow-y: auto;
+}
+
+.modal-content {
+
+    position: relative;
+
+    max-width: 650px;
+
+    margin: 20px auto;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+
+    color: #0f172a;
+
+    margin-bottom: 5px;
+}
+
+.modal-subtitle {
+
+    color: #64748b;
+
+    margin-bottom: 25px;
+}
+
+.cerrar {
+
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
+.form-group {
+
+    margin-bottom: 18px;
+}
+
+.form-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #334155;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: #2563eb;
+}
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 15px;
+}
+
+
+/* =====================================================
+   PREVIEW
+===================================================== */
+
+.preview-container {
+
+    display: none;
+
+    margin-top: 12px;
+}
+
+.preview-container img {
+
+    width: 180px;
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+
+/* =====================================================
+   DETALLES
+===================================================== */
+
+.detalle-imagen {
+
+    width: 100%;
+
+    height: 350px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+}
+
+.detalle-titulo {
+
+    font-size: 28px;
+
+    margin: 12px 0;
+
+    color: #111827;
+}
+
+.detalle-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.detalle-descripcion {
+
+    background: #f8fafc;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+}
+
+.detalle-descripcion p {
+
+    margin-top: 7px;
+
+    color: #64748b;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background: #0f172a;
+
+    color: white;
+
+    padding: 30px 0;
+
+    text-align: center;
+}
+
+footer p {
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    margin: 4px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .grid-mascotas {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .search-box {
+
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+
+        font-size: 34px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+
+        width: 92%;
+    }
+
+    .header-content {
+
+        height: auto;
+
+        padding: 15px 0;
+
+        gap: 15px;
+
+        flex-direction: column;
+    }
+
+    .hero {
+
+        padding: 45px 0;
+    }
+
+    .hero h1 {
+
+        font-size: 29px;
+    }
+
+    .grid-mascotas {
+
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+    }
+
+    .card-buttons {
+
+        flex-direction: column;
+    }
+
+    .detalle-imagen {
+
+        height: 260px;
+    }
+}
