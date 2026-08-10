@@ -15,136 +15,16 @@ let paginaActual = 1;
 let mascotas = [
 
     {
-        id: 1,
-        nombre: "Max",
-        tipo: "Perro",
-        dueno: "Juan Pérez",
-        barrio: "San Fernando",
-        fecha: "2026-08-08",
+      id: 1,
+        nombre: "Tuty",
+        tipo: "Gata",
+        dueno: "Nathalia Zapata",
+        barrio: "Bochalema ",
+        fecha: "10/08/2026",
         telefono: "3001234567",
-        descripcion: "Perro café con una mancha blanca en el pecho. Llevaba un collar azul.",
-        foto: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80",
+        foto: "./img/tuty.jpg",
         estado: "perdida"
-    },
-
-    {
-        id: 2,
-        nombre: "Luna",
-        tipo: "Gato",
-        dueno: "María González",
-        barrio: "Granada",
-        fecha: "2026-08-07",
-        telefono: "3019876543",
-        descripcion: "Gata blanca con manchas grises.",
-        foto: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    {
-        id: 3,
-        nombre: "Rocky",
-        tipo: "Perro",
-        dueno: "Carlos Rodríguez",
-        barrio: "Meléndez",
-        fecha: "2026-08-05",
-        telefono: "3154567890",
-        descripcion: "Perro pequeño de color negro con una mancha blanca en una de sus patas.",
-        foto: "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    {
-        id: 4,
-        nombre: "Coco",
-        tipo: "Perro",
-        dueno: "Laura Martínez",
-        barrio: "Ciudad Jardín",
-        fecha: "2026-08-04",
-        telefono: "3001112233",
-        descripcion: "Perro pequeño de color blanco.",
-        foto: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    {
-        id: 5,
-        nombre: "Milo",
-        tipo: "Gato",
-        dueno: "Andrés López",
-        barrio: "El Ingenio",
-        fecha: "2026-08-03",
-        telefono: "3102223344",
-        descripcion: "Gato gris con ojos verdes.",
-        foto: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    {
-        id: 6,
-        nombre: "Nala",
-        tipo: "Perro",
-        dueno: "Sofía Ramírez",
-        barrio: "La Flora",
-        fecha: "2026-08-02",
-        telefono: "3203334455",
-        descripcion: "Perra de color café claro.",
-        foto: "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    {
-        id: 7,
-        nombre: "Simba",
-        tipo: "Gato",
-        dueno: "Daniel Torres",
-        barrio: "San Antonio",
-        fecha: "2026-08-01",
-        telefono: "3114445566",
-        descripcion: "Gato naranja con rayas oscuras.",
-        foto: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    {
-        id: 8,
-        nombre: "Bella",
-        tipo: "Perro",
-        dueno: "Camila Vargas",
-        barrio: "Tequendama",
-        fecha: "2026-07-31",
-        telefono: "3165556677",
-        descripcion: "Perra de tamaño mediano con collar rojo.",
-        foto: "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    {
-        id: 9,
-        nombre: "Thor",
-        tipo: "Perro",
-        dueno: "Sebastián Moreno",
-        barrio: "Valle del Lili",
-        fecha: "2026-07-30",
-        telefono: "3186667788",
-        descripcion: "Perro grande de color negro y café.",
-        foto: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    },
-
-    ,
-
-    {
-        id: 9,
-        nombre: "Thor",
-        tipo: "Perro",
-        dueno: "Sebastián Moreno",
-        barrio: "Valle del Lili",
-        fecha: "2026-07-30",
-        telefono: "3186667788",
-        descripcion: "Perro grande de color negro y café.",
-        foto: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80",
-        estado: "perdida"
-    }
+        }
 
 ];
 
@@ -401,35 +281,7 @@ function crearTarjeta(mascota) {
 
             </div>
 
-
-            <div class="card-buttons">
-
-                <button
-                    class="btn btn-primary"
-                    type="button"
-                    onclick="verDetalles(${mascota.id})">
-
-                    Ver detalles
-
-                </button>
-
-
-                ${
-                    perdida
-                        ? `
-                            <button
-                                class="btn btn-success"
-                                type="button"
-                                onclick="marcarEncontrada(${mascota.id})">
-
-                                Encontrada
-
-                            </button>
-                        `
-                        : ""
-                }
-
-            </div>
+    
 
         </div>
 
