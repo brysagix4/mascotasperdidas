@@ -11,19 +11,37 @@ let paginaActual = 1;
 // =====================================================
 
 let mascotas = [
-  
-
   {
     id: 1,
+    nombre: "Tuty",
+    tipo: "Gato",
+    sexo: "Hembra",
+    barrio: "Bochalema ",
+    fecha: "10/08/2026",
+    foto: "./img/tuty.jpg",
+    estado: "encontrada",
+  },
+
+  {
+    id: 2,
     nombre: "Zenu",
     tipo: "Perro",
     sexo: "Macho",
-    dueno: "Juan Urrea",
     barrio: "Kachipay ",
     fecha: "10/08/2026",
-    telefono: "317 3903451",
     foto: "./img/zenu.jpg",
-    estado: "perdida",
+    estado: "encontrada",
+  },
+
+  {
+    id: 3,
+    nombre: "Lucio",
+    tipo: "Gato",
+    sexo: "Macho",
+    barrio: "Kachipay ",
+    fecha: "10/08/2026",
+    foto: "./img/lucio.jpg",
+    estado: "encontrada",
   },
 
 
